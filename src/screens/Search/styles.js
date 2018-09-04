@@ -5,7 +5,13 @@ const styles = StyleSheet.create({
     {
         flex: 1,
     },
-
+    title:
+    {
+        fontSize: 20,
+        fontStyle: 'italic',
+        alignSelf: 'center',
+        margin: 10,
+    },
 
 });
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, Switch, Button } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from './styles';
 
 import { connect } from 'react-redux';
@@ -10,36 +10,31 @@ export class BookItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isFavorite: false,
-
+      defaultImage: "https://vignette.wikia.nocookie.net/2007scape/images/7/7a/Mage%27s_book_detail.png/revision/latest?cb=20180310083825",
     };
   }
 
-  onSwitchValueChange = (value) => {
-  }
-
-  onBtSavePress = () => {
-    this.props.addBook({ ...this.props.book, favorite: this.state.isFavorite });
+  goBookScreen = () => {
+    let book = { ...this.props.book, isFavorite: false };
+    this.props.navigation.navigate("BookScreen", { book });
   }
 
   render() {
     return (
-      <View style={styles.rootContainer}>
-        <Image style={styles.image} source={{ uri: this.props.book.image }}></Image>
-        <Text style={styles.txtTitle}>{this.props.book.title}</Text>
-
-        <View style={styles.container}>
-          <Text>Favorito?</Text>
-          <Switch  />
+      <TouchableOpacity onPress={this.goBookScreen}>
+        <View style={styles.rootContainer}>
+          <Image style={styles.image} source={{ uri: !!this.props.book.image ? this.props.book.image : this.state.defaultImage }}></Image>
+          <Text style={styles.txtTitle}>{this.props.book.title}</Text>
         </View>
-
-        <Button title="Salvar" onPress={this.onBtSavePress}></Button>
-
-      </View>
+      </TouchableOpacity>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(booksActions, dispatch);
 
-export default connect(null, mapDispatchToProps)(BookItem);
+const mapStateToProps = (state) => ({
+  books: state.books,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookItem);

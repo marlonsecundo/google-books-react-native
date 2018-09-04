@@ -10,7 +10,7 @@ export default dataReducer = (state = defaultState, action) => {
 
         case types.removeBook:
             return state.filter((item) => {
-                if (item !== action.book) return action.book;
+                if (item.id !== action.book.id) return action.book;
             });
 
         case types.updateBook:

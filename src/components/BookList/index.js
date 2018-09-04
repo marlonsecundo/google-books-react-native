@@ -12,9 +12,8 @@ class BookList extends Component {
         return (
             <View style={styles.rootContainer}>
                 <ScrollView>
-                    <Text style={styles.title}>Lista De Livros</Text>
                     {this.props.books.map((item) => {
-                        return (<BookItem key={item.id} book={item}></BookItem>)
+                        return (<BookItem navigation={this.props.navigation} key={item.id} book={item}></BookItem>)
                     })}
                 </ScrollView>
             </View>

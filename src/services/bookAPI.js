@@ -16,7 +16,7 @@ searchBooks = async (title) => {
 
 
     let books = response.data.items.map((item) => {
-        let image = "";
+        let image = null;
         if (item.volumeInfo.imageLinks !== undefined) image = item.volumeInfo.imageLinks.smallThumbnail;
         return { id: item.id, title: item.volumeInfo.title, image: image}
     });

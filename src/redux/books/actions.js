@@ -15,7 +15,7 @@ export function addBook(book) {
 export function removeBook(book) {
     return {
         type: types.removeBook,
-        id: book,
+        book: book,
     }
 }
 

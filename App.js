@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Switch, Picker } from 'react-native';
 
 import { Home, Search, Book } from './src/screens';
 import { createStackNavigator } from 'react-navigation';
@@ -25,11 +25,12 @@ type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <Provider store={store}>
-        <PersistGate persistor={persistor} loading={(<View></View>)}>
-          <RootStack></RootStack>
-        </PersistGate>
-      </Provider>
+
+        <Provider store={store}>
+          <PersistGate persistor={persistor} loading={(<View></View>)}>
+            <RootStack></RootStack>
+          </PersistGate>
+        </Provider>
     );
   }
 }

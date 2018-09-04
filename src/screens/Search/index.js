@@ -19,19 +19,18 @@ class Search extends Component {
         this.setState({ books: books });
     }
 
-    test = () => {
 
-    }
 
     render() {
         return (
             <View style={styles.rootContainer}>
+                <Text style={styles.title}>Pesquisa de Livros</Text>
                 <View style={styles.container}>
                     <TextInput onChangeText={this.onChangeText}></TextInput>
                     <Button title="Procurar" onPress={this.btSearchPress}></Button>
                 </View>
-                <BookList books={this.state.books}></BookList>
-
+                <BookList navigation={this.props.navigation} books={this.state.books}></BookList>
+                <Button title="Voltar" onPress={() => { this.props.navigation.navigate("HomeScreen"); }}></Button>
             </View>
         );
     }

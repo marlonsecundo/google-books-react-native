@@ -4,13 +4,9 @@ const styles = StyleSheet.create({
     rootContainer:
     {
         flex: 1,
+        padding: 15,
     },
-    title:
-    {
-        fontSize: 25,
-        fontStyle: 'italic',
-        alignSelf: 'center',
-    },
+
 
 
 });
