@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button, Alert } from 'react-native';
 import { BookList } from '../../components';
 import styles from './styles';
 import * as booksApi from '../../services/bookAPI';
@@ -7,7 +7,7 @@ class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            textSearch: 'Bom dia',
+            textSearch: '',
             books: [],
         };
     }
@@ -15,8 +15,22 @@ class Search extends Component {
     onChangeText = (text) => this.setState({ textSearch: text });
 
     btSearchPress = async () => {
-        const books = await booksApi.searchBooks(this.state.textSearch);
-        this.setState({ books: books });
+        let books = [];
+
+        let result = await booksApi.searchBooks(this.state.textSearch);
+
+        if (result.response.ok)
+            books = result.books;
+        else {
+            if (this.state.textSearch === "")
+                Alert.alert("Texto Vazio");
+
+            Alert.alert("Não foi possível realizar a procura dos livros!");
+        }
+
+        this.setState({ books });
+
+        if (books.lenght === 0) Alert.alert("Nenhum Resultado Encontrado!");
     }
 
 

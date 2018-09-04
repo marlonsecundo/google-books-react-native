@@ -38,7 +38,7 @@ class Home extends Component {
                 <Button
                     title={this.state.filter ? "Mostrar Todos" : "Favoritos"}
                     onPress={() => { this.setState({ filter: !this.state.filter }) }}></Button>
-                <BookList navigation={this.props.navigation} books={this.props.books}></BookList>
+                <BookList navigation={this.props.navigation} books={books}></BookList>
             </View>
         );
     }
